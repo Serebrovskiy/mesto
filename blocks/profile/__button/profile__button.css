@@ -1,0 +1,16 @@
+.profile__button {
+  width: 146px;
+  height: 46px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+
+  background-image: url(../../../images/plus.svg);
+  background-size: 22px;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  border: 2px solid #fff;
+
+}

@@ -1,0 +1,13 @@
+.profile__edit {
+width: 22px;
+height: 22px;
+margin-top: 7px;
+background-color: #000;
+background-image: url(../../../images/pen.svg);
+background-size: 10px;
+background-repeat: no-repeat;
+background-position: center;
+
+
+border: 1px solid #fff;
+}
