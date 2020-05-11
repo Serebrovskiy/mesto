@@ -9,10 +9,23 @@
 </head>
 <body>
   <main class="page">
+
     <header class="header">
       <img class="header__logo" src="images/logo.svg" alt="Логотип">
       <hr class="header__line">
     </header>
+
+    <div class="popup popup__opened">
+      <div class="popup__grid">
+        <div class="popup__close-icon"></div>
+        <div class="popup__container">
+          <h3 class="popup__title">Редактировать профиль</h3>
+          <input type="text" placeholder="Жак-Ив Кусто" class="popup__input-text">
+          <input type="text" placeholder="Исследователь океана" class="popup__input-text">
+          <button class="popup__button"><p class="popup__button-text">Сохранить</p></button>
+        </div>
+      </div>
+    </div>
 
     <section class="profile">
       <div class="profile__info-block">

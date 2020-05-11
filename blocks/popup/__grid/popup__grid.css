@@ -1,0 +1,10 @@
+.popup__grid {
+  width: 470px;
+  margin-left: 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+
+  /* border: 1px solid burlywood; */
+}

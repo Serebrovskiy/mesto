@@ -14,3 +14,8 @@
   border: 2px solid #fff;
 
 }
+
+.profile__button:hover {
+  opacity: .6;
+  cursor: pointer;
+}
