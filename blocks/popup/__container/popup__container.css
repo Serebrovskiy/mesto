@@ -4,9 +4,16 @@
   background-color: #fff;
   border-radius: 10px;
   margin-right: 38px;
-
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+}
+
+@media screen and (max-width: 400px) {
+  .popup__container {
+    width: 275px;
+    height: 250px;
+    margin-right: 12px;
+  }
 }

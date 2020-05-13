@@ -6,10 +6,17 @@
   background-position: center;
   border: 0;
   background-color: #000;
-
 }
 
 .popup__close-icon:hover {
   opacity: .6;
   cursor: pointer;
+}
+
+@media screen and (max-width: 400px) {
+  .popup__close-icon {
+    width: 17px;
+    height: 17px;
+    background-size: cover;
+  }
 }

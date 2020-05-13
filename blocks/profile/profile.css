@@ -1,20 +1,40 @@
 @import url(./__avatar/profile__avatar.css);
-@import url(./__info-block/profile__info-block.css);
 @import url(./__name/profile__name.css);
 @import url(./__profession/profile__profession.css);
-@import url(./__name-block-edit/profile__name-block-edit.css);
 @import url(./__edit/profile__edit.css);
 @import url(./__button/profile__button.css);
-
-
+@import url(./__name-block/profile__name-block.css);
 
 .profile {
   max-width: 882px;
   margin: 40px auto 0;
+  display: grid;
+  grid-template-columns: 150px minmax(min-content, max-content) 1fr 170px;
+  grid-template-rows: 1fr;
+}
 
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+@media screen and (max-width: 900px) {
+  .profile {
+    margin: 40px 15px 0;
+  }
+}
 
- /* border: 1px solid gray; */
+@media screen and (max-width: 600px) {
+  .profile {
+    grid-template-columns: 150px minmax(min-content, max-content) 1fr 20%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .profile {
+    grid-template-columns: 150px minmax(min-content, max-content) 1fr 18%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .profile {
+    margin-top: 20px;
+    grid-template-columns: auto 22%;
+    grid-template-rows: 1fr 1fr;
+  }
 }

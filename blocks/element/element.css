@@ -3,13 +3,15 @@
 @import url(./__title/element__title.css);
 @import url(./__like/element__like.css);
 
-
 .element {
   width: 282px;
   height: 361px;
   background-color: #fff;
-
   border-radius: 10px;
-  /* border: 1px solid wheat; */
+}
 
+@media screen and (max-width: 900px) {
+  .element {
+   margin: 0 auto;
+  }
 }

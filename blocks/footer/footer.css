@@ -4,9 +4,14 @@
   margin: 66px auto 0;
   padding-bottom: 60px;
   max-width: 882px;
-
   display: flex;
   justify-content: flex-start;
   align-items: center;
+}
 
+@media screen and (max-width: 400px) {
+  .footer {
+    margin-top: 48px;
+    padding-bottom: 36px;
+  }
 }

@@ -1,21 +1,50 @@
 .profile__button {
-  width: 146px;
-  height: 46px;
+  width: 150px;
+  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #000;
-
   background-image: url(../../../images/plus.svg);
   background-size: 22px;
   background-repeat: no-repeat;
   background-position: center;
-
+  justify-self: flex-end;
+  align-self: center;
   border: 2px solid #fff;
-
 }
 
 .profile__button:hover {
   opacity: .6;
   cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+  .profile__button {
+    width: 100px;
+    height: 60px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .profile__button {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .profile__button {
+    width: 60px;
+    height: 100px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .profile__button {
+    width: 282px;
+    height: 50px;
+    grid-column: span 2;
+    justify-self: center;
+  }
 }
