@@ -17,8 +17,6 @@ function openPopup () {
     popup.classList.remove('popup_opened');
   }
 
-  buttonClose.addEventListener('click', closePopup);
-
   function changeElements (evt) {
     evt.preventDefault();
     profileName.textContent = nameInput.value;
@@ -26,7 +24,8 @@ function openPopup () {
     closePopup ();
     }
 
-  change.addEventListener('submit', changeElements);
+    buttonClose.addEventListener('click', closePopup);
+    change.addEventListener('submit', changeElements);
 }
 
 buttonOpen.addEventListener('click', openPopup);
