@@ -2,7 +2,7 @@
 
 .footer {
   margin: 66px auto 0;
-  padding-bottom: 60px;
+  padding: 0 30px 60px;
   max-width: 882px;
   display: flex;
   justify-content: flex-start;

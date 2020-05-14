@@ -1,6 +1,7 @@
-.elements {
+.cards {
   max-width: 882px;
   margin: 47px auto 0;
+  padding: 0 20px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
   grid-template-rows: auto;
@@ -9,7 +10,7 @@
 }
 
 @media screen and (max-width: 400px) {
-  .elements {
+  .cards {
    margin-top: 36px;
   }
 }

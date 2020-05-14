@@ -1,0 +1,17 @@
+@import url(./__image/card__image.css);
+@import url(./__container/card__container.css);
+@import url(./__title/card__title.css);
+@import url(./__like/card__like.css);
+
+.card {
+  width: 282px;
+  height: 361px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 900px) {
+  .card {
+   margin: 0 auto;
+  }
+}
