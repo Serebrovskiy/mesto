@@ -13,6 +13,10 @@
   cursor: pointer;
 }
 
+.popup__close-icon:focus {
+  outline: none;
+}
+
 @media screen and (max-width: 400px) {
   .popup__close-icon {
     width: 17px;

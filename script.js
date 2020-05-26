@@ -20,7 +20,6 @@ const cardPlace = document.querySelector('.elements');
 const cardTemplate = document.querySelector('#card').content;
 const elements = document.querySelector('.elements');
 
-
 // попап изменения профиля
 function openPopup() {
   nameInput.value = profileName.textContent;
@@ -47,28 +46,28 @@ buttonOpen.addEventListener('click', openPopup);
 
 const initialCards = [
   {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    name: 'Смоленск',
+    link: 'images/Smolensk.jpg'
   },
   {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    name: 'Череповец',
+    link: 'images/Cherepovets.jpg'
   },
   {
     name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    link: 'images/Baikal.jpg'
+  },
+  {
+    name: 'Карелия',
+    link: 'images/Karelia2.jpg'
+  },
+  {
+    name: 'Алтай',
+    link: 'images/Altai.jpg'
+  },
+  {
+    name: 'Петербург',
+    link: 'images/Piter.jpg'
   }
 ];
 
@@ -107,6 +106,14 @@ function addCards2(place, image) {
   cardElement.querySelector('.element__title').textContent = place;
   cardElement.querySelector('.element__image').alt = place;
 
+  cardElement.querySelector('.element__basket').addEventListener('click', function(evt){  //удаляем карточку
+       evt.target.parentElement.remove();
+   });
+
+   cardElement.querySelector('.element__like').addEventListener('click', function(evt){  //ставим лайк
+    evt.target.classList.toggle('element__like_active');
+});
+
   elements.prepend(cardElement);
   console.log(initialCards);
 }
@@ -119,29 +126,8 @@ initialCards.forEach(elem => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// initialCards.forEach(function (item){
-//   const element = document.querySelector('.element');
-//   cardElement.querySelector('.element__image').src = item.link;
-//   cardElement.querySelector('.element__title').textContent = item.name;
-//   element.prepend(cardElement);
-// });
-
-// initialCards.forEach(function (item){
-//   console.log(item.name + '.');
-//   card.textContent = item.name;
-// });
-
+  //initialCards.splice(initialCards.findIndex(item => item.field === place), 2);
+  // const crow = initialCards.find(function (bird) {
+  //   return bird.includes("place");
+//});
+//console.log(crow);

@@ -1,10 +1,19 @@
 .element__like {
   width: 21px;
   height: 18px;
-  background-color: #fff;
+  background-color: transparent;
   background-image: url(../../../images/heart.svg);
   background-size: 20px;
   background-repeat: no-repeat;
   background-position: center;
   border: none;
+}
+
+.element__like:hover {
+  opacity: .6;
+  cursor: pointer;
+}
+
+.element__like:focus {
+  outline: none;
 }

@@ -5,8 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="pages/index.css">
+  <link rel="icon" type="image/gif" href="images/faviconka.gif">
   <title>Mesto</title>
 </head>
+
 <body>
   <main class="page">
     <header class="header">
@@ -14,23 +16,24 @@
       <hr class="header__line">
     </header>
     <section class="profile">
-      <img class="profile__avatar" src="images/Jacques-Yves-Cousteau.jpg" alt="Жак-Ив Кусто в красной шапке на фоне моря">
+      <img class="profile__avatar" src="images/Jacques-Yves-Cousteau.jpg"
+        alt="Жак-Ив Кусто в красной шапке на фоне моря">
       <div class="profile__name-block">
         <h2 class="profile__name">Жак-Ив Кусто</h2>
+        <button type="button" class="profile__edit"></button>
         <p class="profile__profession">Исследователь океана</p>
       </div>
-      <button class="profile__edit"></button>
-      <button class="profile__button"></button>
+      <button type="button" class="profile__button"></button>
     </section>
     <section class="elements">
 
-
       <template id="card">
         <div class="element">
+          <button type="button" class="element__basket"></button>
           <img class="element__image" src="" alt=" ">
           <div class="element__container">
             <h3 class="element__title"></h3>
-            <button class="element__like"></button>
+            <button class="element__like "></button>
           </div>
         </div>
       </template>
@@ -40,6 +43,7 @@
       <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
   </main>
+
   <div class="popup">
     <div class="popup__grid">
       <button type="button" class="popup__close-icon"></button>
@@ -51,14 +55,14 @@
       </form>
     </div>
   </div>
-
   <div class="popup popup_add_card">
     <div class="popup__grid">
       <button type="button" class="popup__close-icon popup__close-icon_add_card"></button>
-      <form class="popup__container popup__container_add_card" >
+      <form class="popup__container popup__container_add_card">
         <h3 class="popup__title">Новое место</h3>
         <input type="text" placeholder="Название" class="popup__input-text popup__input-text_type_place" required>
-        <input type="url" placeholder="Ссылка на картинку " class="popup__input-text popup__input-text_type_image" required>
+        <input type="url" placeholder="Ссылка на картинку " class="popup__input-text popup__input-text_type_image"
+          required>
         <button class="popup__button popup__button_add_card" type="submit">Создать</button>
       </form>
     </div>
@@ -66,4 +70,5 @@
 
   <script src="script.js"></script>
 </body>
+
 </html>
