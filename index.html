@@ -23,48 +23,18 @@
       <button class="profile__button"></button>
     </section>
     <section class="elements">
-      <div class="element">
-        <img class="element__image" src="images/Piter.jpg" alt="По наберажной Петербурга плывет катер">
-        <div class="element__container">
-          <h3 class="element__title">Петербург</h3>
-          <button class="element__like"></button>
+
+
+      <template id="card">
+        <div class="element">
+          <img class="element__image" src="" alt=" ">
+          <div class="element__container">
+            <h3 class="element__title"></h3>
+            <button class="element__like"></button>
+          </div>
         </div>
-      </div>
-      <div class="element">
-        <img class="element__image" src="images/Altai.jpg" alt="Человек смотрит на горы сквозь лес">
-        <div class="element__container">
-          <h3 class="element__title">Алтай</h3>
-          <button class="element__like"></button>
-        </div>
-      </div>
-      <div class="element">
-        <img class="element__image" src="images/Karelia2.jpg" alt="Старый грузовик под дождем">
-        <div class="element__container">
-          <h3 class="element__title">Карелия</h3>
-          <button class="element__like"></button>
-        </div>
-      </div>
-      <div class="element">
-        <img class="element__image" src="images/Baikal.jpg" alt="Лазурный берег Байкала">
-        <div class="element__container">
-          <h3 class="element__title">Байкал</h3>
-          <button class="element__like"></button>
-        </div>
-      </div>
-      <div class="element">
-        <img class="element__image" src="images/Cherepovets.jpg" alt="Красный закат на фоне дымящих труб">
-        <div class="element__container">
-          <h3 class="element__title">Череповец</h3>
-          <button class="element__like"></button>
-        </div>
-      </div>
-      <div class="element">
-        <img class="element__image" src="images/Smolensk.jpg" alt="Башня старой крепости">
-        <div class="element__container">
-          <h3 class="element__title">Смоленск</h3>
-          <button class="element__like"></button>
-        </div>
-      </div>
+      </template>
+
     </section>
     <footer class="footer">
       <p class="footer__copyright">© 2020 Mesto Russia</p>
@@ -81,6 +51,19 @@
       </form>
     </div>
   </div>
+
+  <div class="popup popup_add_card">
+    <div class="popup__grid">
+      <button type="button" class="popup__close-icon popup__close-icon_add_card"></button>
+      <form class="popup__container popup__container_add_card" >
+        <h3 class="popup__title">Новое место</h3>
+        <input type="text" placeholder="Название" class="popup__input-text popup__input-text_type_place" required>
+        <input type="url" placeholder="Ссылка на картинку " class="popup__input-text popup__input-text_type_image" required>
+        <button class="popup__button popup__button_add_card" type="submit">Создать</button>
+      </form>
+    </div>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
