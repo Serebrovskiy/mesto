@@ -1,7 +1,7 @@
 .card__like {
   width: 21px;
   height: 18px;
-  background-color: #fff;
+  background-color: transparent;
   background-image: url(../../../images/heart.svg);
   background-size: 20px;
   background-repeat: no-repeat;
@@ -10,6 +10,15 @@
 }
 
 .card__like:hover {
+<<<<<<< HEAD:blocks/card/__like/card__like.css
   opacity: .8;
   cursor: pointer;
+=======
+  opacity: .6;
+  cursor: pointer;
+}
+
+.card__like:focus {
+  outline: none;
+>>>>>>> develop:blocks/element/__like/element__like.css
 }

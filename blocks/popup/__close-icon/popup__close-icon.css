@@ -9,8 +9,12 @@
 }
 
 .popup__close-icon:hover {
-  opacity: .6;
+  opacity: 0.6;
   cursor: pointer;
+}
+
+.popup__close-icon:focus {
+  outline: none;
 }
 
 @media screen and (max-width: 400px) {

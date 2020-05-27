@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +13,8 @@
       <img class="header__logo" src="images/logo.svg" alt="Логотип">
     </header>
     <section class="profile">
-      <img class="profile__avatar" src="images/Jacques-Yves-Cousteau.jpg" alt="Жак-Ив Кусто в красной шапке на фоне моря">
+      <img class="profile__avatar" src="images/Jacques-Yves-Cousteau.jpg"
+        alt="Жак-Ив Кусто в красной шапке на фоне моря">
       <div class="profile__name-block">
         <h2 class="profile__name">Жак-Ив Кусто</h2>
         <button type="button" class="profile__edit"></button>
@@ -23,48 +23,16 @@
       <button type="button" class="profile__button"></button>
     </section>
     <section class="cards">
-      <div class="card">
-        <img class="card__image" src="images/Piter.jpg" alt="По наберажной Петербурга плывет катер">
-        <div class="card__container">
-          <h3 class="card__title">Петербург</h3>
-          <button type="button" class="card__like"></button>
+      <template id="card">
+        <div class="card">
+          <button type="button" class="card__basket"></button>
+          <img class="card__image" src="" alt=" ">
+          <div class="card__container">
+            <h3 class="card__title">Место</h3>
+            <button class="card__like "></button>
+          </div>
         </div>
-      </div>
-      <div class="card">
-        <img class="card__image" src="images/Altai.jpg" alt="Человек смотрит на горы сквозь лес">
-        <div class="card__container">
-          <h3 class="card__title">Алтай</h3>
-          <button type="button" class="card__like"></button>
-        </div>
-      </div>
-      <div class="card">
-        <img class="card__image" src="images/Karelia2.jpg" alt="Старый грузовик под дождем">
-        <div class="card__container">
-          <h3 class="card__title">Карелия</h3>
-          <button type="button" class="card__like"></button>
-        </div>
-      </div>
-      <div class="card">
-        <img class="card__image" src="images/Baikal.jpg" alt="Лазурный берег Байкала">
-        <div class="card__container">
-          <h3 class="card__title">Байкал</h3>
-          <button type="button" class="card__like"></button>
-        </div>
-      </div>
-      <div class="card">
-        <img class="card__image" src="images/Cherepovets.jpg" alt="Красный закат на фоне дымящих труб">
-        <div class="card__container">
-          <h3 class="card__title">Череповец</h3>
-          <button type="button" class="card__like"></button>
-        </div>
-      </div>
-      <div class="card">
-        <img class="card__image" src="images/Smolensk.jpg" alt="Башня старой крепости">
-        <div class="card__container">
-          <h3 class="card__title">Смоленск</h3>
-          <button type="button" class="card__like"></button>
-        </div>
-      </div>
+      </template>
     </section>
     <footer class="footer">
       <p class="footer__copyright">© 2020 Mesto Russia</p>
@@ -81,6 +49,50 @@
       </form>
     </div>
   </div>
+  <div class="popup popup_add_card">
+    <div class="popup__grid">
+      <button type="button" class="popup__close-icon popup__close-icon_add_card"></button>
+      <form class="popup__container popup__container_add_card">
+        <h3 class="popup__title">Новое место</h3>
+        <input type="text" placeholder="Название" class="popup__input-text popup__input-text_type_place" required>
+        <input type="url" placeholder="Ссылка на картинку " class="popup__input-text popup__input-text_type_image"
+          required>
+        <button class="popup__button popup__button_add_card" type="submit">Создать</button>
+      </form>
+    </div>
+  </div>
+  <div class="popup popup_view-image">
+    <div class="popup__grid popup__grid_image">
+      <button type="button" class="popup__close-icon popup__close-icon_image"></button>
+      <figure class="popup__figure">
+        <img class="popup__image" src="#" alt="Описание">
+        <figcaption class="popup__caption">Название места</figcaption>
+      </figure>
+    </div>
+  </div>
+  <div class="popup popup_add_card">
+    <div class="popup__grid">
+      <button type="button" class="popup__close-icon popup__close-icon_add_card"></button>
+      <form class="popup__container popup__container_add_card">
+        <h3 class="popup__title">Новое место</h3>
+        <input type="text" placeholder="Название" class="popup__input-text popup__input-text_type_place" required>
+        <input type="url" placeholder="Ссылка на картинку " class="popup__input-text popup__input-text_type_image"
+          required>
+        <button class="popup__button popup__button_add_card" type="submit">Создать</button>
+      </form>
+    </div>
+  </div>
+  <div class="popup popup_view-image">
+    <div class="popup__grid popup__grid_image">
+      <button type="button" class="popup__close-icon popup__close-icon_image"></button>
+      <figure class="popup__figure">
+        <img class="popup__image" src="#" alt="Описание">
+        <figcaption class="popup__caption">Название места</figcaption>
+      </figure>
+    </div>
+  </div>
   <script src="scripts/script.js"></script>
+
 </body>
+
 </html>
