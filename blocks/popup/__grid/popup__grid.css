@@ -10,7 +10,7 @@
 @media screen and (max-width: 400px) {
   .popup__grid {
     max-width: 300px;
-    max-height: 248px;
+    max-height: 290px;
     margin-left: 0;
   }
 }
