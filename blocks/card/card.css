@@ -1,22 +1,17 @@
+
 @import url(./__image/card__image.css);
 @import url(./__container/card__container.css);
 @import url(./__title/card__title.css);
 @import url(./__like/card__like.css);
-<<<<<<< HEAD
-=======
 @import url(./__basket/card__basket.css);
 @import url(./__like/_active/card__like_active.css);
->>>>>>> develop
 
 .card {
   width: 282px;
   height: 361px;
   background-color: #fff;
   border-radius: 10px;
-<<<<<<< HEAD
-=======
   position: relative;
->>>>>>> develop
 }
 
 @media screen and (max-width: 900px) {

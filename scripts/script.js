@@ -28,25 +28,6 @@ const popupImage = document.querySelector('.popup__image');
 function openPopupProfile() {
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
-<<<<<<< HEAD:scripts/script.js
-  popup.classList.add('popup_opened');
-}
-
-function closePopup () {
-  popup.classList.remove('popup_opened');
-}
-
-function changeElements (evt) {
-  evt.preventDefault();
-  profileName.textContent = nameInput.value;
-  profileJob.textContent = jobInput.value;
-  closePopup ();
-}
-
-buttonClose.addEventListener('click', closePopup);
-change.addEventListener('submit', changeElements);
-buttonOpen.addEventListener('click', openPopup);
-=======
   toggleClassProfile();
 }
 
@@ -158,8 +139,3 @@ function addCard(place, image) {
 buttonCloseImage.addEventListener('click', toggleClassImage);
 
 
-
-
-
-
->>>>>>> develop:script.js

@@ -11,6 +11,7 @@
   <main class="page">
     <header class="header">
       <img class="header__logo" src="images/logo.svg" alt="Логотип">
+      <hr class="header__line">
     </header>
     <section class="profile">
       <img class="profile__avatar" src="images/Jacques-Yves-Cousteau.jpg"
@@ -70,29 +71,7 @@
       </figure>
     </div>
   </div>
-  <div class="popup popup_add_card">
-    <div class="popup__grid">
-      <button type="button" class="popup__close-icon popup__close-icon_add_card"></button>
-      <form class="popup__container popup__container_add_card">
-        <h3 class="popup__title">Новое место</h3>
-        <input type="text" placeholder="Название" class="popup__input-text popup__input-text_type_place" required>
-        <input type="url" placeholder="Ссылка на картинку " class="popup__input-text popup__input-text_type_image"
-          required>
-        <button class="popup__button popup__button_add_card" type="submit">Создать</button>
-      </form>
-    </div>
-  </div>
-  <div class="popup popup_view-image">
-    <div class="popup__grid popup__grid_image">
-      <button type="button" class="popup__close-icon popup__close-icon_image"></button>
-      <figure class="popup__figure">
-        <img class="popup__image" src="#" alt="Описание">
-        <figcaption class="popup__caption">Название места</figcaption>
-      </figure>
-    </div>
-  </div>
   <script src="scripts/script.js"></script>
-
 </body>
 
 </html>
