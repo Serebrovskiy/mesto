@@ -6,6 +6,13 @@
 @import url(./__button-text/popup__button-text.css);
 @import url(./__grid/popup__grid.css);
 @import url(./__close-icon/popup__close-icon.css);
+@import url(./__figure/popup__figure.css);
+@import url(./__grid/_image/popup__grid_image.css);
+@import url(./__image/popup__image.css);
+@import url(./__caption/popup__caption.css);
+@import url(./__close-icon/_image/popup__close-icon_image.css);
+
+
 
 .popup {
   width: 100%;
@@ -13,9 +20,13 @@
   position: fixed;
   left: 0;
   bottom: 0;
-  display: none;
+  display: flex;
   justify-content: center;
   align-items: center;
   background: rgba(0, 0, 0, .5);
   font-family:'Inter', Arial, sans-serif;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.5s, opacity 0.5s linear;
+  -moz-transition:  all 0.5s;
 }

@@ -1,3 +1,4 @@
+// попап изменения профиля
 const popup = document.querySelector('.popup')
 const change = document.querySelector('.popup__container');
 const buttonOpen = document.querySelector('.profile__edit');
@@ -7,13 +8,19 @@ const jobInput = document.querySelector('.popup__input-text_type_job');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__profession');
 
-// попап добавления картинок
+// попап добавления карточек
 const popupCard = document.querySelector('.popup_add_card');
 const buttonOpenCard = document.querySelector('.profile__button');
 const placeInput = document.querySelector('.popup__input-text_type_place');
 const imageInput = document.querySelector('.popup__input-text_type_image');
 const changeCard = document.querySelector('.popup__container_add_card');
 const buttonCloseCard = document.querySelector('.popup__close-icon_add_card');
+
+// попап просмотра картинок
+const popupViewImage = document.querySelector('.popup_view-image');
+const buttonCloseImage = document.querySelector('.popup__close-icon_image');
+const captionImage = document.querySelector('.popup__caption');
+const popupImage = document.querySelector('.popup__image');
 
 //работа с DOM
 const cardPlace = document.querySelector('.elements');
@@ -27,7 +34,7 @@ function openPopup() {
   popup.classList.toggle('popup_opened');
 
   function closePopup() {
-    popup.classList.remove('popup_opened');
+    popup.classList.remove('popup_opened');    // это хорошо бы исправить, сделать одну функцию toogle()  и вообще исправить всю функцию
   }
 
   buttonClose.addEventListener('click', closePopup);
@@ -75,7 +82,7 @@ const initialCards = [
 function openPopupCard() {
   imageInput.value = '';
   placeInput.value = '';
- toggleClassCard();
+  toggleClassCard();
 }
 
 function changeElementsCard(evt) {
@@ -84,43 +91,53 @@ function changeElementsCard(evt) {
   addCards2(placeInput.value, imageInput.value);
   initialCards.push({ name: placeInput.value, link: imageInput.value });  //добавляем объект в массив
 
-  closePopupCard();
-}
-
-function closePopupCard() {
   toggleClassCard();
 }
 
-function toggleClassCard(){
-  popupCard.classList.toggle('popup_opened');
+function toggleClassCard() {
+  popupCard.classList.toggle('popup_opened');   //открываем попап с карточками
+}
+
+function toggleClassImage() {
+  popupViewImage.classList.toggle('popup_opened');    //открываем попап просмотра картинок
 }
 
 buttonOpenCard.addEventListener('click', openPopupCard);
 changeCard.addEventListener('submit', changeElementsCard);
-buttonCloseCard.addEventListener('click', closePopupCard);
+buttonCloseCard.addEventListener('click', toggleClassCard);
 
-
+//добавление карточки
 function addCards2(place, image) {
   const cardElement = cardTemplate.cloneNode(true);
   cardElement.querySelector('.element__image').src = image;
   cardElement.querySelector('.element__title').textContent = place;
   cardElement.querySelector('.element__image').alt = place;
 
-  cardElement.querySelector('.element__basket').addEventListener('click', function(evt){  //удаляем карточку
-       evt.target.parentElement.remove();
-   });
+  cardElement.querySelector('.element__basket').addEventListener('click', function (evt) {  //удаляем карточку
+    evt.target.parentElement.remove();
+  });
 
-   cardElement.querySelector('.element__like').addEventListener('click', function(evt){  //ставим лайк
+  cardElement.querySelector('.element__like').addEventListener('click', function (evt) {  //ставим лайк
     evt.target.classList.toggle('element__like_active');
-});
+  });
+
+  cardElement.querySelector('.element__image').addEventListener('click', function (evt) {  //забираем данные с о картинке
+    captionImage.textContent = evt.target.parentElement.querySelector('.element__title').textContent;
+    popupImage.src = evt.target.parentElement.querySelector('.element__image').src;
+
+    toggleClassImage();
+  });
 
   elements.prepend(cardElement);
-  console.log(initialCards);
 }
+
+buttonCloseImage.addEventListener('click', toggleClassImage);
 
 initialCards.forEach(elem => {
   addCards2(elem.name, elem.link);
 });
+
+
 
 
 
