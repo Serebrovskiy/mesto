@@ -1,4 +1,4 @@
-.element__basket {
+.card__basket {
 position: absolute;
 top: 18px;
 right: 15px;
@@ -13,7 +13,7 @@ background-position: center;
 
 }
 
-.element__basket:hover {
+.card__basket:hover {
   opacity: .6;
   cursor: pointer;
 }

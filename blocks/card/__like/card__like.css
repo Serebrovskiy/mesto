@@ -1,4 +1,4 @@
-.element__like {
+.card__like {
   width: 21px;
   height: 18px;
   background-color: transparent;
@@ -9,11 +9,11 @@
   border: none;
 }
 
-.element__like:hover {
+.card__like:hover {
   opacity: .6;
   cursor: pointer;
 }
 
-.element__like:focus {
+.card__like:focus {
   outline: none;
 }
