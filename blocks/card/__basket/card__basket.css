@@ -10,10 +10,13 @@ background-image: url(../../../images/basket.png);
 background-size: 24px;
 background-repeat: no-repeat;
 background-position: center;
-
 }
 
 .card__basket:hover {
   opacity: .6;
   cursor: pointer;
+}
+
+.card__basket:focus {
+  outline: none;
 }
