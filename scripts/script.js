@@ -101,18 +101,25 @@ function cardImage(evt) {
   togglePopup(popupViewImage);
 }
 
-//добавление карточкy
-function addCard(place, image) {
+//создаем карточкy
+function createCard(place, image) {
   const cardElement = cardsTemplate.cloneNode(true);
   const cardElementImage = cardElement.querySelector('.card__image');
   cardElementImage.src = image;
   cardElementImage.alt = place;
   cardElement.querySelector('.card__title').textContent = place;
 
-  cardElement.querySelector('.card__image').addEventListener('click', cardImage);
+  cardElementImage.addEventListener('click', cardImage);
   cardElement.querySelector('.card__basket').addEventListener('click', cardDelete);
   cardElement.querySelector('.card__like').addEventListener('click', cardLike);
-  pasteCard(cardElement);
+
+  return cardElement;
+}
+
+//добавляем карточкy
+function addCard(place, image) {
+  const card = createCard(place, image);
+  pasteCard(card);
 }
 
 //добавляем исходные карточки
