@@ -52,6 +52,11 @@ const initialCards = [
   }
 ];
 
+//открываем/закрываем попап
+function togglePopup(popup) {
+  popup.classList.toggle('popup_opened');
+}
+
 // попап изменения профиля
 function openPopupProfile() {
   nameInput.value = profileName.textContent;
@@ -73,20 +78,27 @@ function openPopupCard() {
   togglePopup(popupCard);
 }
 
-function changeElementsCard(evt) {
-  evt.preventDefault();
-  addCard(placeInput.value, imageInput.value);
-  togglePopup(popupCard);
-}
-
-//открываем/закрываем попап
-function togglePopup(popup) {
-  popup.classList.toggle('popup_opened');
-}
-
 //добавляем карточку в разметку
 function pasteCard(elem) {
   cards.prepend(elem);
+}
+
+//удаляем карточку
+function cardDelete(evt) {
+  evt.target.closest('.card').remove();
+};
+
+//ставим лайк
+function cardLike(evt) {
+  evt.target.classList.toggle('card__like_active');
+};
+
+//забираем данные о картинке
+function cardImage(evt) {
+  captionImage.textContent = evt.target.closest('.card').textContent;
+  popupImage.src = evt.target.src;
+  popupImage.alt = evt.target.alt;
+  togglePopup(popupViewImage);
 }
 
 //добавление карточкy
@@ -97,24 +109,7 @@ function addCard(place, image) {
   cardElementImage.alt = place;
   cardElement.querySelector('.card__title').textContent = place;
 
-  //удаляем карточку
-  function cardDelete(evt) {
-    evt.target.closest('.card').remove();
-  };
-
-  //ставим лайк
-  function cardLike(evt) {
-    evt.target.classList.toggle('card__like_active');
-  };
-
-  //забираем данные о картинке
-  cardElement.querySelector('.card__image').addEventListener('click', function (evt) {
-    captionImage.textContent = evt.target.parentElement.querySelector('.card__title').textContent;
-    popupImage.src = evt.target.src;
-    popupImage.alt = evt.target.parentElement.querySelector('.card__title').textContent;
-    togglePopup(popupViewImage);
-  });
-
+  cardElement.querySelector('.card__image').addEventListener('click', cardImage);
   cardElement.querySelector('.card__basket').addEventListener('click', cardDelete);
   cardElement.querySelector('.card__like').addEventListener('click', cardLike);
   pasteCard(cardElement);
@@ -125,6 +120,12 @@ function primaryLoadingCards() {
   initialCards.forEach(elem => {
     addCard(elem.name, elem.link);
   });
+}
+
+function changeElementsCard(evt) {
+  evt.preventDefault();
+  addCard(placeInput.value, imageInput.value);
+  togglePopup(popupCard);
 }
 
 buttonOpenProfile.addEventListener('click', openPopupProfile);
