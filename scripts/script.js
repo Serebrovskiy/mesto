@@ -102,12 +102,13 @@ function cardImage(evt) {
 }
 
 //создаем карточкy
-function createCard(place, image) {
+// function createCard(place, image) {
+  function createCard(card) {
   const cardElement = cardsTemplate.cloneNode(true);
   const cardElementImage = cardElement.querySelector('.card__image');
-  cardElementImage.src = image;
-  cardElementImage.alt = place;
-  cardElement.querySelector('.card__title').textContent = place;
+  cardElementImage.src = card.link;
+  cardElementImage.alt = card.name;
+  cardElement.querySelector('.card__title').textContent = card.name;
 
   cardElementImage.addEventListener('click', cardImage);
   cardElement.querySelector('.card__basket').addEventListener('click', cardDelete);
@@ -117,21 +118,22 @@ function createCard(place, image) {
 }
 
 //добавляем карточкy
-function addCard(place, image) {
-  const card = createCard(place, image);
+  function addCard(newCard) {
+  const card = createCard(newCard);
   pasteCard(card);
 }
 
 //добавляем исходные карточки
 function primaryLoadingCards() {
   initialCards.forEach(elem => {
-    addCard(elem.name, elem.link);
+    addCard(elem);
   });
 }
 
 function changeElementsCard(evt) {
   evt.preventDefault();
-  addCard(placeInput.value, imageInput.value);
+  const input = {name: placeInput.value, link: imageInput.value};
+  addCard(input);
   togglePopup(popupCard);
 }
 

@@ -4,5 +4,6 @@
 }
 
 .card__like_active:hover {
-  opacity: 1;
+  opacity: .6;
+
 }
