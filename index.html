@@ -36,13 +36,14 @@
     <div class="popup__grid">
       <button type="button" class="popup__close-icon"></button>
       <form class="popup__container" novalidate>
-        <label class="popup__field">
-          <h3 class="popup__title">Редактировать профиль</h3>
-          <input id="name-input" type="text" placeholder="Жак-Ив Кусто" class="popup__input-text popup__input-text_type_name" required minlength="2" maxlength="40" pattern="^[a-zA-Zа-яА-Я\s-]+$">
-          <span id="name-input-error" class="popup__input-error"></span>
-          <input id="profession-input" type="text" placeholder="Исследователь океана" class="popup__input-text popup__input-text_type_job" required minlength="2" maxlength="200">
-          <span id="profession-input-error" class="popup__input-error"></span>
-        </label>
+        <h3 class="popup__title">Редактировать профиль</h3>
+        <input id="name-input" type="text" placeholder="Жак-Ив Кусто"
+          class="popup__input-text popup__input-text_type_name" required minlength="2" maxlength="40"
+          pattern="^[a-zA-Zа-яА-Я\s-]+$">
+        <span id="name-input-error" class="popup__input-error"></span>
+        <input id="profession-input" type="text" placeholder="Исследователь океана"
+          class="popup__input-text popup__input-text_type_job" required minlength="2" maxlength="200">
+        <span id="profession-input-error" class="popup__input-error"></span>
         <button class="popup__button" type="submit">Сохранить</button>
       </form>
     </div>
@@ -53,9 +54,11 @@
       <button type="button" class="popup__close-icon popup__close-icon_add_card"></button>
       <form class="popup__container popup__container_add_card" novalidate>
         <h3 class="popup__title">Новое место</h3>
-        <input id="place-input" type="text" placeholder="Название" class="popup__input-text popup__input-text_type_place" required minlength="2" maxlength="30">
+        <input id="place-input" type="text" placeholder="Название"
+          class="popup__input-text popup__input-text_type_place" required minlength="2" maxlength="30">
         <span id="place-input-error" class="popup__input-error"></span>
-        <input id="image-input" type="url" placeholder="Ссылка на картинку" class="popup__input-text popup__input-text_type_image" required>
+        <input id="image-input" type="url" placeholder="Ссылка на картинку"
+          class="popup__input-text popup__input-text_type_image" required>
         <span id="image-input-error" class="popup__input-error"></span>
         <button class="popup__button popup__button_add_card" type="submit">Создать</button>
       </form>

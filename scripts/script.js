@@ -1,3 +1,4 @@
+const popupList = Array.from(document.querySelectorAll('.popup'));
 // для изменения профиля
 const popupProfile = document.querySelector('.popup')
 const changeProfile = document.querySelector('.popup__container');
@@ -23,7 +24,6 @@ const popupViewImage = document.querySelector('.popup_view-image');
 const buttonCloseImage = document.querySelector('.popup__close-icon_image');
 const captionImage = document.querySelector('.popup__caption');
 const popupImage = document.querySelector('.popup__image');
-
 
 
 //исходный масив
@@ -56,14 +56,12 @@ const initialCards = [
 
 const formValidationOptions = {
   formSelector: '.popup__container',
-inputSelector: '.popup__input-text',
-submitButtonSelector: '.popup__button',
-inactiveButtonClass: 'popup__button_disabled',
-inputErrorClass: 'popup__input_type_error',
-errorClass: 'popup__input-error_active'
+  inputSelector: '.popup__input-text',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_active'
 };
-
-
 
 //открываем/закрываем попап
 function togglePopup(popup) {
@@ -118,8 +116,7 @@ function cardImage(evt) {
 }
 
 //создаем карточкy
-// function createCard(place, image) {
-  function createCard(card) {
+function createCard(card) {
   const cardElement = cardsTemplate.cloneNode(true);
   const cardElementImage = cardElement.querySelector('.card__image');
   cardElementImage.src = card.link;
@@ -134,7 +131,7 @@ function cardImage(evt) {
 }
 
 //добавляем карточкy
-  function addCard(newCard) {
+function addCard(newCard) {
   const card = createCard(newCard);
   pasteCard(card);
 }
@@ -149,9 +146,28 @@ function primaryLoadingCards() {
 //сохраняем изменения в карточке
 function changeElementsCard(evt) {
   evt.preventDefault();
-  const input = {name: placeInput.value, link: imageInput.value};
+  const input = { name: placeInput.value, link: imageInput.value };
   addCard(input);
   togglePopup(popupCard);
+}
+
+//закрываем попап через клик на оверлей или Escape
+function popupClose(evt) {
+  popupList.forEach((formElement) => {
+    const elementGrid = formElement.querySelector('.popup__grid');
+
+    //если нажимаем Escape при условии что форма открыта
+    if (evt.key === 'Escape' && formElement.classList.contains('popup_opened')) {
+      togglePopup(formElement);
+    }
+    //если кликаем вне формы
+    if (evt.target === formElement || evt.target === elementGrid) {
+      togglePopup(formElement);
+    }
+  });
+  //удаляем слушатели
+  evt.target.removeEventListener('keydown', popupClose);
+  evt.target.removeEventListener('click', popupClose);
 }
 
 buttonOpenProfile.addEventListener('click', openPopupProfile);
@@ -161,6 +177,9 @@ buttonOpenCard.addEventListener('click', openPopupCard);
 changeCard.addEventListener('submit', changeElementsCard);
 buttonCloseCard.addEventListener('click', () => togglePopup(popupCard));
 buttonCloseImage.addEventListener('click', () => togglePopup(popupViewImage));
+document.addEventListener('keydown', popupClose);
+document.addEventListener('click', popupClose);
 
 primaryLoadingCards();
+
 

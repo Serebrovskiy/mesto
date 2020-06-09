@@ -15,7 +15,7 @@
 }
 
 .popup__button:hover {
-  opacity: .8;
+  opacity: 0.8;
   cursor: pointer;
 }
 
@@ -23,7 +23,7 @@
   .popup__button {
     width: 200px;
     padding: 5px 0;
-    margin-top: 25px;
+    margin-top: 20px;
     padding-bottom: 5px;
     height: 40px;
     font-size: 14px;

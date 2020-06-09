@@ -14,7 +14,7 @@
   align-items: center;
 }
 
- @media screen and (max-width: 900px) {
+@media screen and (max-width: 900px) {
   .profile {
     flex-direction: column;
     align-items: center;
@@ -25,6 +25,8 @@
 
 @media screen and (max-width: 400px) {
   .profile {
-    margin-top: 20px;
+    margin-top: auto;
+    margin-left: auto;
+    min-width: 265px;
   }
 }

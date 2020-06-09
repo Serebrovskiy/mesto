@@ -11,11 +11,11 @@
 @import url(./__caption/popup__caption.css);
 @import url(./__close-icon/_image/popup__close-icon_image.css);
 @import url(./__container/_add_card/popup__container_add_card.css);
-@import url(./__field/popup__field.css);
 @import url(./__input-error/popup__input-error.css);
 @import url(./__input-text/_type/popup__input_type_error.css);
 @import url(./__input-text/_type/popup__input-error_active.css);
 @import url(./__button/_disabled/popup__button_disabled.css);
+@import url(./__button/_add_card/popup__button_add_card.css);
 
 
 
