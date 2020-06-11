@@ -6,11 +6,11 @@ function handleButton(formElement, submitButton, inactiveButtonClass) {
 }
 
 //выводим/убираем текст с ошибками
-function handleInput(input, inputErrorClass, errorClass, reset) {
+function handleInput(input, inputErrorClass, errorClass) {
   const error = document.querySelector(`#${input.id}-error`);
-  let isInputValid = input.checkValidity();
+  const isInputValid = input.checkValidity();
 
-  if (isInputValid || reset) {
+  if (isInputValid) {
     input.classList.remove(inputErrorClass);
     error.classList.remove(errorClass);
     error.textContent = '';
@@ -21,9 +21,16 @@ function handleInput(input, inputErrorClass, errorClass, reset) {
   }
 };
 
+//функция сброса ошибок при открытии попапа создания карточек
+function primaryErrorReset(input, inputErrorClass, errorClass){
+  const error = document.querySelector(`#${input.id}-error`);
+  input.classList.remove(inputErrorClass);
+  error.classList.remove(errorClass);
+  error.textContent = '';
+};
+
+
 function enableValidation(elem) {
-  //флаг для очистки попапа добавления карточек
-  let resetFlag;
   const formList = Array.from(document.querySelectorAll(elem.formSelector));
 
   formList.forEach((formElement) => {
@@ -32,14 +39,12 @@ function enableValidation(elem) {
 
     //сбрасываем инпуты и кнопку
     inputList.forEach((inputElement) => {
-      resetFlag = true;
-      handleInput(inputElement, elem.inputErrorClass, elem.errorClass, resetFlag);
+      primaryErrorReset(inputElement, elem.inputErrorClass, elem.errorClass);
       handleButton(formElement, buttonElement, elem.inactiveButtonClass);
     });
 
     inputList.forEach((inputElement) => {
-      resetFlag = false;
-      inputElement.addEventListener('input', () => handleInput(inputElement, elem.inputErrorClass, elem.errorClass, resetFlag));
+      inputElement.addEventListener('input', () => handleInput(inputElement, elem.inputErrorClass, elem.errorClass));
     });
 
     formElement.addEventListener('input', () => handleButton(formElement, buttonElement, elem.inactiveButtonClass))
