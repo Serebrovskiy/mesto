@@ -167,7 +167,7 @@ function popupClose(evt) {
   });
   //удаляем слушатели
   evt.target.removeEventListener('keydown', popupClose);
-  evt.target.removeEventListener('click', popupClose);
+  evt.target.removeEventListener('mousedown ', popupClose);
 }
 
 buttonOpenProfile.addEventListener('click', openPopupProfile);
@@ -178,7 +178,7 @@ changeCard.addEventListener('submit', changeElementsCard);
 buttonCloseCard.addEventListener('click', () => togglePopup(popupCard));
 buttonCloseImage.addEventListener('click', () => togglePopup(popupViewImage));
 document.addEventListener('keydown', popupClose);
-document.addEventListener('click', popupClose);
+document.addEventListener('mousedown', popupClose);
 
 primaryLoadingCards();
 

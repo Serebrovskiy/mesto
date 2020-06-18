@@ -1,8 +1,16 @@
+//функция сброса ошибок
+function errorReset(input, inputErrorClass, errorClass){
+  const error = document.querySelector(`#${input.id}-error`);
+  input.classList.remove(inputErrorClass);
+  error.classList.remove(errorClass);
+  error.textContent = '';
+};
+
 //регулируем активность кнопки
 function handleButton(formElement, submitButton, inactiveButtonClass) {
   const hasErrors = !formElement.checkValidity();
   submitButton.disabled = hasErrors;
-  submitButton.classList.toggle(inactiveButtonClass, hasErrors)
+  submitButton.classList.toggle(inactiveButtonClass, hasErrors);
 }
 
 //выводим/убираем текст с ошибками
@@ -11,24 +19,13 @@ function handleInput(input, inputErrorClass, errorClass) {
   const isInputValid = input.checkValidity();
 
   if (isInputValid) {
-    input.classList.remove(inputErrorClass);
-    error.classList.remove(errorClass);
-    error.textContent = '';
+    errorReset(input, inputErrorClass, errorClass);
   } else {
     input.classList.add(inputErrorClass);
     error.classList.add(errorClass);
     error.textContent = input.validationMessage;
   }
 };
-
-//функция сброса ошибок при открытии попапа создания карточек
-function primaryErrorReset(input, inputErrorClass, errorClass){
-  const error = document.querySelector(`#${input.id}-error`);
-  input.classList.remove(inputErrorClass);
-  error.classList.remove(errorClass);
-  error.textContent = '';
-};
-
 
 function enableValidation(elem) {
   const formList = Array.from(document.querySelectorAll(elem.formSelector));
@@ -39,7 +36,7 @@ function enableValidation(elem) {
 
     //сбрасываем инпуты и кнопку
     inputList.forEach((inputElement) => {
-      primaryErrorReset(inputElement, elem.inputErrorClass, elem.errorClass);
+      errorReset(inputElement, elem.inputErrorClass, elem.errorClass);
       handleButton(formElement, buttonElement, elem.inactiveButtonClass);
     });
 
