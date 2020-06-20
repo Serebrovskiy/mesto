@@ -1,3 +1,6 @@
+import Card from './Card.js';
+import FormValidator from './FormValidator.js';
+
 const popupList = Array.from(document.querySelectorAll('.popup'));
 // для изменения профиля
 const popupProfile = document.querySelector('.popup')
@@ -17,14 +20,12 @@ const placeInput = document.querySelector('.popup__input-text_type_place');
 const imageInput = document.querySelector('.popup__input-text_type_image');
 const buttonCloseCard = document.querySelector('.popup__close-icon_add_card');
 const cards = document.querySelector('.cards');
-const cardsTemplate = document.querySelector('#card').content;
 
 // для попапа просмотра картинок
 const popupViewImage = document.querySelector('.popup_view-image');
 const buttonCloseImage = document.querySelector('.popup__close-icon_image');
 const captionImage = document.querySelector('.popup__caption');
 const popupImage = document.querySelector('.popup__image');
-
 
 //исходный масив
 const initialCards = [
@@ -63,10 +64,21 @@ const formValidationOptions = {
   errorClass: 'popup__input-error_active'
 };
 
-//открываем/закрываем попап
+//сбрасываем ошибки
+function resetErrors(formValidator) {
+  const inputList = Array.from(document.querySelectorAll(formValidationOptions.inputSelector));
+  inputList.forEach(inputElement => {
+    formValidator.errorReset(inputElement, formValidationOptions.inputErrorClass, formValidationOptions.errorClass);
+  });
+}
+
+//открываем/закрываем попап и включаем валидацию
 function togglePopup(popup) {
   popup.classList.toggle('popup_opened');
-  enableValidation(formValidationOptions);
+
+  const formValidator = new FormValidator(formValidationOptions, popup);
+  formValidator.enableValidation();
+  resetErrors(formValidator);
 }
 
 // попап изменения профиля
@@ -96,50 +108,19 @@ function pasteCard(elem) {
   cards.prepend(elem);
 }
 
-//удаляем карточку
-function cardDelete(evt) {
-  evt.target.closest('.card').remove();
-  evt.target.removeEventListener('click', cardDelete);  //удаляем слушатель
-};
-
-//ставим лайк
-function cardLike(evt) {
-  evt.target.classList.toggle('card__like_active');
-};
-
-//забираем данные о картинке
-function cardImage(evt) {
-  captionImage.textContent = evt.target.closest('.card').textContent;
-  popupImage.src = evt.target.src;
-  popupImage.alt = evt.target.alt;
-  togglePopup(popupViewImage);
-}
-
-//создаем карточкy
-function createCard(card) {
-  const cardElement = cardsTemplate.cloneNode(true);
-  const cardElementImage = cardElement.querySelector('.card__image');
-  cardElementImage.src = card.link;
-  cardElementImage.alt = card.name;
-  cardElement.querySelector('.card__title').textContent = card.name;
-
-  cardElementImage.addEventListener('click', cardImage);
-  cardElement.querySelector('.card__basket').addEventListener('click', cardDelete);
-  cardElement.querySelector('.card__like').addEventListener('click', cardLike);
-
-  return cardElement;
-}
-
 //добавляем карточкy
 function addCard(newCard) {
-  const card = createCard(newCard);
-  pasteCard(card);
+  const card = new Card(newCard, '#card');
+  const cardElement = card.getCard();
+  pasteCard(cardElement);
 }
 
-//добавляем исходные карточки
+//добавляем исходные карточки создавая экземпляры класса Card
 function primaryLoadingCards() {
-  initialCards.forEach(elem => {
-    addCard(elem);
+  initialCards.forEach((item) => {
+    const card = new Card(item, '#card');
+    const cardElement = card.getCard();
+    cards.append(cardElement);
   });
 }
 
@@ -170,6 +151,13 @@ function popupClose(evt) {
   evt.target.removeEventListener('mousedown ', popupClose);
 }
 
+function cardImage(evt) {
+  captionImage.textContent = evt.target.closest('.card').textContent;
+  popupImage.src = evt.target.src;
+  popupImage.alt = evt.target.alt;
+  togglePopup(popupViewImage);
+}
+
 buttonOpenProfile.addEventListener('click', openPopupProfile);
 changeProfile.addEventListener('submit', changeElements);
 buttonClose.addEventListener('click', () => togglePopup(popupProfile));
@@ -181,5 +169,3 @@ document.addEventListener('keydown', popupClose);
 document.addEventListener('mousedown', popupClose);
 
 primaryLoadingCards();
-
-
