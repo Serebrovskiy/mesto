@@ -1,59 +1,10 @@
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
+import { initialCards } from './utils.js';
+import { formConfig } from './utils.js';
 
-const popupList = Array.from(document.querySelectorAll('.popup'));
-// для изменения профиля
-const popupProfile = document.querySelector('.popup')
-const changeProfile = document.querySelector('.popup__container');
-const buttonOpenProfile = document.querySelector('.profile__edit');
-const buttonClose = document.querySelector('.popup__close-icon');
-const nameInput = changeProfile.querySelector('.popup__input-text_type_name');
-const jobInput = changeProfile.querySelector('.popup__input-text_type_job');
-const profileName = document.querySelector('.profile__name');
-const profileJob = document.querySelector('.profile__profession');
 
-// для попапа добавления карточек
-const popupCard = document.querySelector('.popup_add_card');
-const changeCard = document.querySelector('.popup__container_add_card');
-const buttonOpenCard = document.querySelector('.profile__button');
-const placeInput = document.querySelector('.popup__input-text_type_place');
-const imageInput = document.querySelector('.popup__input-text_type_image');
-const buttonCloseCard = document.querySelector('.popup__close-icon_add_card');
 const cards = document.querySelector('.cards');
-
-// для попапа просмотра картинок
-const popupViewImage = document.querySelector('.popup_view-image');
-const buttonCloseImage = document.querySelector('.popup__close-icon_image');
-const captionImage = document.querySelector('.popup__caption');
-const popupImage = document.querySelector('.popup__image');
-
-//исходный масив
-const initialCards = [
-  {
-    name: 'Смоленск',
-    link: 'images/Smolensk.jpg'
-  },
-  {
-    name: 'Череповец',
-    link: 'images/Cherepovets.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'images/Baikal.jpg'
-  },
-  {
-    name: 'Карелия',
-    link: 'images/Karelia2.jpg'
-  },
-  {
-    name: 'Алтай',
-    link: 'images/Altai.jpg'
-  },
-  {
-    name: 'Петербург',
-    link: 'images/Piter.jpg'
-  }
-];
 
 const formValidationOptions = {
   formSelector: '.popup__container',
@@ -66,7 +17,8 @@ const formValidationOptions = {
 
 //сбрасываем ошибки
 function resetErrors(formValidator) {
-  const inputList = Array.from(document.querySelectorAll(formValidationOptions.inputSelector));
+  const inputList = [...document.querySelectorAll(formValidationOptions.inputSelector)];
+  console.log(inputList);
   inputList.forEach(inputElement => {
     formValidator.errorReset(inputElement, formValidationOptions.inputErrorClass, formValidationOptions.errorClass);
   });
@@ -81,26 +33,37 @@ function togglePopup(popup) {
   resetErrors(formValidator);
 }
 
+function popupCloseListener() {
+  document.addEventListener('keydown', popupClose);
+  document.addEventListener('mousedown', popupClose);
+}
+
 // попап изменения профиля
 function openPopupProfile() {
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileJob.textContent;
-  togglePopup(popupProfile);
+  formConfig.nameInput.value = formConfig.profileName.textContent;
+  formConfig.jobInput.value = formConfig.profileJob.textContent;
+
+  popupCloseListener();
+
+  togglePopup(formConfig.popupProfile);
 }
 
 //сохраняем изменения в профаиле
 function changeElements(evt) {
   evt.preventDefault();
-  profileName.textContent = nameInput.value;
-  profileJob.textContent = jobInput.value;
-  togglePopup(popupProfile);
+  formConfig.profileName.textContent = formConfig.nameInput.value;
+  formConfig.profileJob.textContent = formConfig.jobInput.value;
+  togglePopup(formConfig.popupProfile);
 }
 
 // попап добавления карточек
 function openPopupCard() {
-  imageInput.value = '';
-  placeInput.value = '';
-  togglePopup(popupCard);
+  formConfig.imageInput.value = '';
+  formConfig.placeInput.value = '';
+
+  popupCloseListener();
+
+  togglePopup(formConfig.popupCard);
 }
 
 //добавляем карточку в разметку
@@ -127,14 +90,14 @@ function primaryLoadingCards() {
 //сохраняем изменения в карточке
 function changeElementsCard(evt) {
   evt.preventDefault();
-  const input = { name: placeInput.value, link: imageInput.value };
+  const input = { name: formConfig.placeInput.value, link: formConfig.imageInput.value };
   addCard(input);
-  togglePopup(popupCard);
+  togglePopup(formConfig.popupCard);
 }
 
 //закрываем попап через клик на оверлей или Escape
 function popupClose(evt) {
-  popupList.forEach((formElement) => {
+  formConfig.popupList.forEach((formElement) => {
     const elementGrid = formElement.querySelector('.popup__grid');
 
     //если нажимаем Escape при условии что форма открыта
@@ -151,21 +114,12 @@ function popupClose(evt) {
   evt.target.removeEventListener('mousedown ', popupClose);
 }
 
-function cardImage(evt) {
-  captionImage.textContent = evt.target.closest('.card').textContent;
-  popupImage.src = evt.target.src;
-  popupImage.alt = evt.target.alt;
-  togglePopup(popupViewImage);
-}
-
-buttonOpenProfile.addEventListener('click', openPopupProfile);
-changeProfile.addEventListener('submit', changeElements);
-buttonClose.addEventListener('click', () => togglePopup(popupProfile));
-buttonOpenCard.addEventListener('click', openPopupCard);
-changeCard.addEventListener('submit', changeElementsCard);
-buttonCloseCard.addEventListener('click', () => togglePopup(popupCard));
-buttonCloseImage.addEventListener('click', () => togglePopup(popupViewImage));
-document.addEventListener('keydown', popupClose);
-document.addEventListener('mousedown', popupClose);
+formConfig.buttonOpenProfile.addEventListener('click', openPopupProfile);
+formConfig.changeProfile.addEventListener('submit', changeElements);
+formConfig.buttonClose.addEventListener('click', () => togglePopup(formConfig.popupProfile));
+formConfig.buttonOpenCard.addEventListener('click', openPopupCard);
+formConfig.changeCard.addEventListener('submit', changeElementsCard);
+formConfig.buttonCloseCard.addEventListener('click', () => togglePopup(formConfig.popupCard));
+formConfig.buttonCloseImage.addEventListener('click', () => togglePopup(formConfig.popupViewImage));
 
 primaryLoadingCards();
