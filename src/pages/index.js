@@ -12,7 +12,8 @@ import { formConfig } from '../utils/utils.js';
 const cards = document.querySelector('.cards');
 
 const formValidationOptions = {
-  formSelector: '.popup__container',
+  formProfileSelector: '.popup__container',
+  formCardSelector: '.popup__container_add_card',
   inputSelector: '.popup__input-text',
   submitButtonSelector: '.popup__button',
   inactiveButtonClass: 'popup__button_disabled',
@@ -28,9 +29,9 @@ const popupImage = new PopupWithImage(formConfig.popupViewImage);
 popupImage.setEventListeners();
 
 //валидируем формы
-const formValidatorProfile = new FormValidator(formValidationOptions, formConfig.popupProfile);
+const formValidatorProfile = new FormValidator(formValidationOptions, formValidationOptions.formProfileSelector);
 formValidatorProfile.enableValidation();
-const formValidatorCard = new FormValidator(formValidationOptions, formConfig.popupCard);
+const formValidatorCard = new FormValidator(formValidationOptions, formValidationOptions.formCardSelector);
 formValidatorCard.enableValidation();
 
 //отрисовываем все карточки на странице
@@ -43,8 +44,7 @@ const sectionObject = new Section({
       }
     });
     const getElement = card.getCard();
-
-    return getElement;
+    sectionObject.addAppendItem(getElement);
   }
 }, cards);
 sectionObject.rendererAllItems();
@@ -71,30 +71,23 @@ const formCard = new PopupWithForm(formConfig.popupCard, {
       }
     });
     const newCard = card.getCard();
-    cards.prepend(newCard);
+    sectionObject.addPrependItem(newCard);
   }
 });
 formCard.setEventListeners();
 
-//сбрасываем ошибки
-function resetErrors(formValidator) {
-  const inputList = [...document.querySelectorAll(formValidationOptions.inputSelector)];
-  inputList.forEach(inputElement => {
-    formValidator.errorReset(inputElement, formValidationOptions.inputErrorClass, formValidationOptions.errorClass);
-  });
-}
-
 //открываем попап профиля
 formConfig.buttonOpenProfile.addEventListener('click', () => {
-  formProfile.open();
-
   const userProfile = userInfo.getUserInfo();
+  formProfile.open();
+  formValidatorProfile.primaryErrorsReset();
+  formValidatorProfile.buttonDisable();
   formProfile.setInputsValue(userProfile.name, userProfile.profession);
-  resetErrors(formValidatorProfile);
 });
 
 //попап создания карточки
 formConfig.buttonOpenCard.addEventListener('click', () => {
   formCard.open();
-  resetErrors(formValidatorCard);
+  formValidatorCard.primaryErrorsReset();
+  formValidatorCard.buttonDisable();
 });

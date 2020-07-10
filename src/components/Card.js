@@ -39,7 +39,7 @@ export default class Card {
     });
 
     cardBasket.addEventListener('click', () => {
-      this._cardDelete(cardBasket);
+      this._cardDelete();
     });
 
     cardLike.addEventListener('click', () => {
@@ -47,17 +47,9 @@ export default class Card {
     });
   }
 
-  //открываем попап с картинкой
-  _cardImage() {
-    formConfig.captionImage.textContent = this._element.closest('.card').textContent;
-    formConfig.popupImage.src = this._img;
-    formConfig.popupImage.alt = this._name;
-    formConfig.popupViewImage.classList.toggle('popup_opened');
-  }
-
-  _cardDelete(cardBasket) {
-    cardBasket.closest('.card').remove();
-    this._removeEventListeners(cardBasket);
+  _cardDelete() {
+    this._element.remove();
+    this._element = null;
   }
 
   _cardLike(cardLike) {

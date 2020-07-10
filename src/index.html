@@ -34,7 +34,7 @@
   <div class="popup">
     <div class="popup__grid">
       <button type="button" class="popup__close-icon"></button>
-      <form class="popup__container" novalidate>
+      <form class="popup__container" name="formProfile" novalidate>
         <h3 class="popup__title">Редактировать профиль</h3>
         <input id="name-input" type="text" name="inputProfileName"  placeholder="Жак-Ив Кусто"
           class="popup__input-text popup__input-text_type_name" required minlength="2" maxlength="40"
@@ -51,7 +51,7 @@
   <div class="popup popup_add_card">
     <div class="popup__grid">
       <button type="button" class="popup__close-icon popup__close-icon_add_card"></button>
-      <form class="popup__container popup__container_add_card" novalidate>
+      <form class="popup__container popup__container_add_card" name="formCard" novalidate>
         <h3 class="popup__title">Новое место</h3>
         <input id="place-input" type="text" name="inputCardName" placeholder="Название"
           class="popup__input-text popup__input-text_type_place" required minlength="2" maxlength="30">

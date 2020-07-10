@@ -5,50 +5,70 @@ export default class FormValidator {
   }
 
   enableValidation() {
-    const formList = Array.from(document.querySelectorAll(this._element.formSelector));
+    this._formElement = document.querySelector(this._formSelector);
+    this._buttonElement = this._formElement.querySelector(this._element.submitButtonSelector);
+    this._inputList = Array.from(this._formElement.querySelectorAll(this._element.inputSelector));
 
-    formList.forEach((formElement) => {
-      const inputList = Array.from(formElement.querySelectorAll(this._element.inputSelector));
-      const buttonElement = formElement.querySelector(this._element.submitButtonSelector);
-      //сбрасываем кнопку
-      this._handleButton(formElement, buttonElement, this._element.inactiveButtonClass);
+    //сбрасываем кнопку
+    this._handleButton(this._element.inactiveButtonClass);
 
-      inputList.forEach((inputElement) => {
-        inputElement.addEventListener('input', () => this._handleInput(inputElement, this._element.inputErrorClass, this._element.errorClass));
-      });
+    this._setEventListeners();
 
-      formElement.addEventListener('input', () => this._handleButton(formElement, buttonElement, this._element.inactiveButtonClass))
-    });
+    this._formElement.addEventListener('input', () => this._handleButton(this._element.inactiveButtonClass))
   };
+
+  //собираем инпуты
+  _setEventListeners() {
+    this._inputList.forEach((inputElement) => {
+      inputElement.addEventListener('input', () => this._handleInput(inputElement, this._element.inputErrorClass, this._element.errorClass));
+    });
+  }
 
   //проверяем инпуты
   _handleInput(input, inputErrorClass, errorClass) {
-    const error = document.querySelector(`#${input.id}-error`);
     const isInputValid = input.checkValidity();
-
     if (isInputValid) {
       this.errorReset(input, inputErrorClass, errorClass);
     } else {
-      input.classList.add(inputErrorClass);
-      error.classList.add(errorClass);
-      error.textContent = input.validationMessage;
+      this._errorShow(input, inputErrorClass, errorClass);
     }
   };
 
   //регулируем активность кнопки
-  _handleButton(formElement, submitButton, inactiveButtonClass) {
-    const hasErrors = !formElement.checkValidity();
-    submitButton.disabled = hasErrors;
-    submitButton.classList.toggle(inactiveButtonClass, hasErrors);
+  _handleButton(inactiveButtonClass) {
+    const hasErrors = !this._formElement.checkValidity();
+    this._buttonElement.disabled = hasErrors;
+    this._buttonElement.classList.toggle(inactiveButtonClass, hasErrors);
+  }
+
+  //функция показа ошибок
+  _errorShow(input, inputErrorClass, errorClass) {
+    const error = this._formElement.querySelector(`#${input.id}-error`);
+    input.classList.add(inputErrorClass);
+    error.classList.add(errorClass);
+    error.textContent = input.validationMessage;
   }
 
   //функция сброса ошибок
   errorReset(input, inputErrorClass, errorClass) {
-    const error = document.querySelector(`#${input.id}-error`);
+    const error = this._formElement.querySelector(`#${input.id}-error`);
     input.classList.remove(inputErrorClass);
-    error.classList.remove(errorClass);
-    error.textContent = '';
-  };
+    if (error) {
+      error.classList.remove(errorClass);
+      error.textContent = '';
+    }
+  }
 
+  //сбрасываем кнопку
+  buttonDisable() {
+    this._buttonElement.setAttribute("disabled", true);
+    this._buttonElement.classList.add(this._element.inactiveButtonClass);
+  }
 
+  //первичный сброс ошибок
+  primaryErrorsReset() {
+    this._inputList.forEach((inputElement) => {
+      this.errorReset(inputElement, this._element.inputErrorClass, this._element.errorClass);
+    });
+  }
 }
