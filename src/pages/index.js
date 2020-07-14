@@ -82,7 +82,7 @@ formConfig.buttonOpenProfile.addEventListener('click', () => {
   formProfile.open();
   formValidatorProfile.primaryErrorsReset();
   formValidatorProfile.buttonDisable();
-  formProfile.setInputsValue(userProfile.name, userProfile.profession);
+  formProfile.setInputsValue([userProfile.name, userProfile.profession]);
 });
 
 //попап создания карточки
