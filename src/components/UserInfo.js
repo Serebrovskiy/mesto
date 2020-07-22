@@ -1,7 +1,8 @@
 export default class UserInfo {
-  constructor(userName, userJob) {
+  constructor(userName, userJob, avatar) {
     this._userName = userName;
     this._userJob = userJob;
+    this._avatar = avatar;
   }
 
   getUserInfo() {
@@ -13,9 +14,24 @@ export default class UserInfo {
     return userData;
   }
 
-  setUserInfo(name, profession) {
-    this._userName.textContent = name;
-    this._userJob.textContent = profession;
+  rendererUserInfo(api) {
+    api
+      .then(res => {
+        this._userName.textContent = res.name;
+        this._userJob.textContent = res.about;
+        this._avatar.src = res.avatar;
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   }
 
+  setUserAvatar(api) {
+    api.then(res => {
+      this._avatar.src = res.avatar;
+    })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
 }

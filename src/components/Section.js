@@ -5,10 +5,11 @@ export default class Section {
     this._containerSelector = containerSelector;
   }
 
-  rendererAllItems() {
-    this._items.forEach(item => {
-      this._renderer(item);
-    });
+  //отрисовываем карточки
+  renderCards() {
+    this._items.forEach((item) => {
+        this._renderer(item);
+      })
   }
 
   addAppendItem(element) {

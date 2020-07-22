@@ -51,7 +51,11 @@ export const formConfig = {
   buttonCloseImage: document.querySelector('.popup__close-icon_image'),
   captionImage: document.querySelector('.popup__caption'),
   popupImage: document.querySelector('.popup__image'),
-  profileName : document.querySelector('.profile__name'),
-  profileProfession : document.querySelector('.profile__profession')
+  profileName: document.querySelector('.profile__name'),
+  profileProfession: document.querySelector('.profile__profession'),
+  popupAvatar: document.querySelector('.popup_avatar'),
+  buttonOpenAvatar: document.querySelector('.profile__avatar-container'),
+  profileAvatar: document.querySelector('.profile__avatar'),
+  popupConfirm: document.querySelector('.popup_confirm')
 };
 

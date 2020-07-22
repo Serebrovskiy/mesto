@@ -32,6 +32,7 @@
 8.  `Visual Studio Code` - редактор исходного кода, разработанный Microsoft
 9.  Использование парадигмы `ООП`
 10. Cистема сборки модулей - `Webpack`
+11. Работа с `Api`
 
 https://serebrovskiy.github.io/mesto
 

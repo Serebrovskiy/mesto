@@ -11,9 +11,7 @@ export default class FormValidator {
 
     //сбрасываем кнопку
     this._handleButton(this._element.inactiveButtonClass);
-
     this._setEventListeners();
-
     this._formElement.addEventListener('input', () => this._handleButton(this._element.inactiveButtonClass))
   };
 

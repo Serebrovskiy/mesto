@@ -4,6 +4,7 @@
 @import url(./__edit/profile__edit.css);
 @import url(./__button/profile__button.css);
 @import url(./__name-block/profile__name-block.css);
+@import url(./__avatar-container/profile__avatar-container.css);
 
 .profile {
   max-width: 882px;
