@@ -43,7 +43,7 @@ export default class PopupWithForm extends Popup {
   }
 
   //слушатель для попапа подтврждения удаления
-  closeConfirm() {
+  closeConfirm(card) {
     super.setEventListeners();
     this._formSelector = this._selector.querySelector('.popup__container');
     this._formSelector.addEventListener('click', () => {

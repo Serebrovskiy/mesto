@@ -47,6 +47,24 @@ const api = new Api({
 
 let cardList = {};
 
+//удаляем карточку после подтверждения
+const handleCardRemoveClick = (id, card) => {
+  const renderFormConfirm = () => {
+    if (card._element) {
+      api.deleteCard(id)
+        .then(() => {
+          card.cardDelete();
+        })
+        .catch((err) => console.log(err));
+    }
+  }
+  //создаем объект подтверждения удаления карточки
+  const formConfirm = new PopupWithForm(formConfig.popupConfirm, renderFormConfirm);
+  formConfirm.open();
+  formConfirm.closeConfirm(card);
+}
+
+
 //отрисовываем все карточки на странице
 const addPrimaryCards = () => {
   api.getInitialCards()
@@ -58,26 +76,11 @@ const addPrimaryCards = () => {
             handleCardClick: () => {
               popupImage.open(item.name, item.link);
             },
-            handleCardRemoveClick: (id) => {
-              const renderFormConfirm = () => {
-                if (card._element) {
-                  api.deleteCard(id)
-                    .then(() => {
-                      card.cardDelete();
-                    })
-                    .catch((err) => console.log(err));
-                }
-              }
-              //создаем объект подтверждения удаления карточки
-              const formConfirm = new PopupWithForm(formConfig.popupConfirm, renderFormConfirm);
-              formConfirm.open();
-              formConfirm.closeConfirm();
-            },
+            handleCardRemoveClick,
             addCardLike: (id) => {
               api.addLike(id)
                 .then(res => {
                   card.addLike(res.likes);
-
                 })
                 .catch((err) => console.log(err));
             },
@@ -130,21 +133,7 @@ const renderFormCard = (data) => {
       handleCardClick: () => {
         popupImage.open(input.name, input.link);
       },
-      handleCardRemoveClick: (id) => {
-        const renderFormConfirm = () => {
-          if (card._element) {
-            api.deleteCard(id)
-              .then(() => {
-                card.cardDelete();
-              })
-              .catch((err) => console.log(err));
-          }
-        }
-        //создаем объект подтверждения удаления карточки
-        const formConfirm = new PopupWithForm(formConfig.popupConfirm, renderFormConfirm);
-        formConfirm.open();
-        formConfirm.closeConfirm();
-      },
+      handleCardRemoveClick,
       addCardLike: (id) => {
         api.addLike(id)
           .then(res => {

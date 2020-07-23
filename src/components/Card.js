@@ -52,7 +52,7 @@ export default class Card {
     //ставим слушатель на карточку с корзинкой
     if (cardBasket) {
       cardBasket.addEventListener('click', () => {
-        this._handleCardRemoveClick(this._id);
+        this._handleCardRemoveClick(this._id, this);
       });
     }
 
