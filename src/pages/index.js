@@ -87,6 +87,7 @@ const addPrimaryCards = () => {
         , cards);
       cardList.renderCards(res);
     })
+    .catch((err) => console.log(err));
 }
 addPrimaryCards();
 
@@ -101,7 +102,8 @@ const renderFormProfile = (values) => {
   api.setProfile(values['inputProfileName'], values['inputProfileProfession'])
     .then(() => {
       formProfile.close();
-    });
+    })
+    .catch((err) => console.log(err));
   userInfo.rendererUserInfo(api.getProfile());
 }
 
@@ -111,7 +113,8 @@ const renderFormAvatar = (values) => {
     .then(() => {
       userInfo.setUserAvatar(api.getProfile());
       formAvatar.close();
-    });
+    })
+    .catch((err) => console.log(err));
 }
 
 //отрисовываем созданную карточку
@@ -125,6 +128,7 @@ const renderFormCard = (data) => {
       rendererCard(res)
       formCard.close();
     })
+    .catch((err) => console.log(err));
 }
 
 //создаем объект попапа профайла

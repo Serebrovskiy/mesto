@@ -78,7 +78,6 @@ export default class Card {
 
   //если лайка нет - ставим, если уже есть - убираем
   _handleCardLike() {
-    console.log(this._cardLike)
     if (! this._cardLike.classList.contains('card__like_active')) {
       this._addCardLike(this._id);
     }

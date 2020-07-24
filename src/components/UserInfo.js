@@ -21,9 +21,7 @@ export default class UserInfo {
         this._userJob.textContent = res.about;
         this._avatar.src = res.avatar;
       })
-      .catch((err) => {
-        console.log(err);
-      })
+      .catch((err) => console.log(err));
   }
 
   setUserAvatar(api) {
@@ -31,8 +29,6 @@ export default class UserInfo {
       .then(res => {
         this._avatar.src = res.avatar;
       })
-      .catch((err) => {
-        console.log(err);
-      })
+      .catch((err) => console.log(err));
   }
 }

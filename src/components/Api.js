@@ -26,7 +26,8 @@ export default class Api {
       method: 'GET',
       headers: this._headers
 
-    }).then(this._getResponse);
+    }).then(this._getResponse)
+    .catch((err) => console.log(err));
   }
 
   //обновляем данные о профиле
@@ -50,8 +51,7 @@ export default class Api {
         name: name,
         link: link
       })
-    }).then(this._getResponse)
-      .catch(err => console.log(err));
+    }).then(this._getResponse);
   }
 
   //удаляем карточку
