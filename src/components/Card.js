@@ -11,6 +11,7 @@ export default class Card {
     this._handleCardRemoveClick = handleCardRemoveClick;
     this._addCardLike = addCardLike;
     this._deleteCardLike = deleteCardLike;
+    this._handleCardLike = this._handleCardLike.bind(this);
   }
 
   _getTemplateCard() {
@@ -27,42 +28,42 @@ export default class Card {
   //возвращаем карточку
   getCard() {
     this._element = this._getTemplateCard();
-    const cardImage = this._element.querySelector('.card__image');
-    const cardTitle = this._element.querySelector('.card__title');
-    const cardBasket = this._element.querySelector('.card__basket');
+    this._cardImage = this._element.querySelector('.card__image');
+    this._cardTitle = this._element.querySelector('.card__title');
+    this._cardBasket = this._element.querySelector('.card__basket');
     this._cardLike = this._element.querySelector('.card__like');
     this._cardCounterLikes = this._element.querySelector('.card__number-likes');
 
-    this._setEventListeners(cardImage, cardBasket);
+    this._setEventListeners();
     this._initialLikes();
 
-    cardImage.src = this._img;
-    cardImage.alt = this._name;
-    cardTitle.textContent = this._name;
+    this._cardImage.src = this._img;
+    this._cardImage.alt = this._name;
+    this._cardTitle.textContent = this._name;
 
     return this._element;
   }
 
   //вешаем слушатели
-  _setEventListeners(cardImage, cardBasket) {
-    cardImage.addEventListener('click', this._handleCardClick);
+  _setEventListeners() {
+    //слушатель на картинку
+    this._cardImage.addEventListener('click', this._handleCardClick);
 
-    //ставим слушатель на карточку с корзинкой
-    if (cardBasket) {
-      cardBasket.addEventListener('click', () => {
+    //слушатель на карточку с корзинкой
+    if (this._cardBasket) {
+      this._cardBasket.addEventListener('click', () => {
         this._handleCardRemoveClick(this._id, this);
       });
     }
 
     //слушатель на лайк
-    this._cardLike.addEventListener('click', () => {
-      this._handleCardLike();
-    });
+    this._cardLike.addEventListener('click', this._handleCardLike);
   }
 
   cardDelete() {
     this._element.remove();
     this._element = null;
+    this._removeEventListeners();
   }
 
   addLike(lakes) {
@@ -77,7 +78,8 @@ export default class Card {
 
   //если лайка нет - ставим, если уже есть - убираем
   _handleCardLike() {
-    if (!this._cardLike.classList.contains('card__like_active')) {
+    console.log(this._cardLike)
+    if (! this._cardLike.classList.contains('card__like_active')) {
       this._addCardLike(this._id);
     }
     else {
@@ -92,5 +94,11 @@ export default class Card {
     if (this._likes.some(elem => elem._id === this._ownerId)) {
       this._cardLike.classList.add('card__like_active');
     }
+  }
+
+  _removeEventListeners() {
+    this._cardImage.removeEventListener('click', this._handleCardClick);
+    this._cardLike.removeEventListener('click', this._handleCardLike);
+    this._cardBasket.removeEventListener('click', this._handleCardRemoveClick);
   }
 }

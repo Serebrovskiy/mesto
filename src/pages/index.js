@@ -38,7 +38,6 @@ const handleCardRemoveClick = (id, card) => {
     if (card._element) {
       api.deleteCard(id)
         .then(() => {
-          console.log(card)
           card.cardDelete();
           formConfirm.close();
         })
