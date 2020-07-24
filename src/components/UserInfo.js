@@ -27,9 +27,10 @@ export default class UserInfo {
   }
 
   setUserAvatar(api) {
-    api.then(res => {
-      this._avatar.src = res.avatar;
-    })
+    api
+      .then(res => {
+        this._avatar.src = res.avatar;
+      })
       .catch((err) => {
         console.log(err);
       })

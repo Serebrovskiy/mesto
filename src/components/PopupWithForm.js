@@ -38,7 +38,6 @@ export default class PopupWithForm extends Popup {
       evt.preventDefault();
       this._handleSubmitForm(this._getInputValues());
       this._formButton.textContent = 'Сохранение...';
-      this.close();
     });
   }
 
@@ -47,8 +46,9 @@ export default class PopupWithForm extends Popup {
     super.setEventListeners();
     this._formSelector = this._selector.querySelector('.popup__container');
     this._formSelector.addEventListener('click', () => {
+      if(card._element){
       this._handleSubmitForm();
-      this.close();
+    }
     });
   }
 

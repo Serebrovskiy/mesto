@@ -1,5 +1,3 @@
-import { formConfig } from '../utils/utils.js';
-
 export default class Card {
   constructor(element, cardSelector, { handleCardClick, handleCardRemoveClick, addCardLike, deleteCardLike }) {
     this._element = element;
