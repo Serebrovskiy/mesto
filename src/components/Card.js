@@ -66,14 +66,14 @@ export default class Card {
     this._removeEventListeners();
   }
 
-  addLike(lakes) {
+  addLike(likes) {
     this._cardLike.classList.add('card__like_active');
-    this._cardCounterLikes.textContent = lakes.length;
+    this._cardCounterLikes.textContent = likes.length;
   }
 
-  deleteLike(lakes) {
+  deleteLike(likes) {
     this._cardLike.classList.remove('card__like_active');
-    this._cardCounterLikes.textContent = lakes.length;
+    this._cardCounterLikes.textContent = likes.length;
   }
 
   //если лайка нет - ставим, если уже есть - убираем

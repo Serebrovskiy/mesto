@@ -95,23 +95,28 @@ addPrimaryCards();
 popupImage.setEventListeners();
 
 //отрисовываем данные пользователя name, about
-userInfo.rendererUserInfo(api.getProfile());
+api.getProfile()
+  .then(res => {
+    userInfo.setUserInfo(res);
+    userInfo.setUserAvatar(res)
+  })
+  .catch((err) => console.log(err));
 
 //форма профиля
 const renderFormProfile = (values) => {
   api.setProfile(values['inputProfileName'], values['inputProfileProfession'])
-    .then(() => {
+    .then((res) => {
+      userInfo.setUserInfo(res);
       formProfile.close();
     })
     .catch((err) => console.log(err));
-  userInfo.rendererUserInfo(api.getProfile());
 }
 
 //форма аватара
 const renderFormAvatar = (values) => {
   api.setAvatar(values.inputAvatar)
-    .then(() => {
-      userInfo.setUserAvatar(api.getProfile());
+    .then((res) => {
+      userInfo.setUserAvatar(res)
       formAvatar.close();
     })
     .catch((err) => console.log(err));

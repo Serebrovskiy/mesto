@@ -14,21 +14,12 @@ export default class UserInfo {
     return userData;
   }
 
-  rendererUserInfo(api) {
-    api
-      .then(res => {
-        this._userName.textContent = res.name;
-        this._userJob.textContent = res.about;
-        this._avatar.src = res.avatar;
-      })
-      .catch((err) => console.log(err));
+  setUserInfo(value) {
+        this._userName.textContent = value.name;
+        this._userJob.textContent = value.about;
   }
 
-  setUserAvatar(api) {
-    api
-      .then(res => {
-        this._avatar.src = res.avatar;
-      })
-      .catch((err) => console.log(err));
+  setUserAvatar(value) {
+        this._avatar.src = value.avatar;
   }
 }
