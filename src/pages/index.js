@@ -80,6 +80,7 @@ const rendererCard = (item) => {
 const addPrimaryCards = () => {
   api.getInitialCards()
     .then(res => {
+      console.log(res)
       cardList = new Section({
         items: res
       },
